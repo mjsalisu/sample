@@ -7,3 +7,4 @@ A practical class on Git and GitHub
 Sample: `Your fullname (GitHub Username)`
 
 - Jamilu Salisu (Jamilusalism)
+- amrah sali (amrahsali)
