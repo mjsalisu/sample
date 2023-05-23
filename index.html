@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Coming Soon</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+
+      .countdown {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .countdown div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 10px;
+      }
+
+      .countdown div span {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Coming Soon</h1>
+      <p>We're working on something awesome and exciting. Stay tuned!</p>
+      <div class="countdown">
+        <div>
+          <span id="days">0</span>
+          <span>Days</span>
+        </div>
+        <div>
+          <span id="hours">0</span>
+          <span>Hours</span>
+        </div>
+        <div>
+          <span id="minutes">0</span>
+          <span>Minutes</span>
+        </div>
+        <div>
+          <span id="seconds">0</span>
+          <span>Seconds</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // JavaScript code for countdown timer (optional)
+      // Adjust the targetDate to your desired date and time
+      var targetDate = new Date("2023-06-01T00:00:00").getTime();
+
+      var countdown = setInterval(function () {
+        var now = new Date().getTime();
+        var distance = targetDate - now;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+
+        if (distance < 0) {
+          clearInterval(countdown);
+          document.getElementById("days").textContent = "0";
+          document.getElementById("hours").textContent = "0";
+          document.getElementById("minutes").textContent = "0";
+          document.getElementById("seconds").textContent = "0";
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
