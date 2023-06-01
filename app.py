@@ -1,19 +1,37 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.post('/')
-def post():
-    return 'Hello, World from POST!'
+@app.post('/login')
+def create_user():
+    fullname = request.json.get('fullname')
+    phone = request.json.get('phone')
+    email = request.json.get('email')
+    username = request.json.get('username')
+    password = request.json.get('password')
 
-@app.get('/')
-def get():
-    return 'Hello, World from GET!'
+    if username == 'admin' and password == 'admin':
+        return {'fullname': fullname, 'phone': phone, 'email': email}
+    else:
+        return 'Invalid username or password'
+    
+@app.post('/book')
+def create_book():
+    title = request.json.get('title')
+    author = request.json.get('author')
+    isbn = request.json.get('isbn')
+    price = request.json.get('price')
 
-@app.patch('/')
-def patch():
-    return 'Hello, World from PATCH!'
+    if not title:
+        return 'Title is required'
+    
+    if not author:
+        return 'Author is required'
+    
+    if not isbn:
+        return 'ISBN is required'
+    
+    if not price:
+        return 'Price is required'
 
-@app.delete('/')
-def delete():
-    return 'Hello, World from DELETE!'
+    return {'title': title, 'author': author, 'isbn': isbn, 'price': price}
